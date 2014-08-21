@@ -1,7 +1,7 @@
 {
   "name": "node-openwrt-events",
   "version": "0.0.1",
-  "main": "src/index.js",
+  "main": "src/lib/RemoteEvents.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/Sitebase/node-openwrt-events.git"
