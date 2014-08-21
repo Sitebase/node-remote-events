@@ -7,7 +7,8 @@ remote.connect({
 	privateKey: require('fs').readFileSync('/Users/wim/.ssh/Red5.pem'),
 	events: {
 		'play.movie': '[mM]ovie',
-		'play.audio': 'audio'
+		'play.audio': 'audio',
+		'login': 'Accepted publickey'
 	}
 }).done(function(conn) {
 	console.log('connection ready');
@@ -18,5 +19,9 @@ remote.connect({
 
 	conn.on('play.audio', function( line ) {
 		console.log('Audio start:', line);
+	});
+
+	conn.on('login', function( line ) {
+		console.log('Someone logged into the server');
 	});
 });
