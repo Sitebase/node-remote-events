@@ -17,6 +17,8 @@ function Connect( options )
 		// Command to do the monitoring on
 		var command = options.monitorCmd || 'logread -f';
 
+		console.log('Exec: ', command);
+
 		conn.exec(command, function(err, stream) {
 			if (err) throw err;
 			stream.on('exit', function(code, signal) {
@@ -25,8 +27,17 @@ function Connect( options )
 				console.log('Stream :: close');
 				conn.end();
 			}).on('data', function(data) {
-				conn.emit('someevent', 'This is a test');
-				console.log('STDOUT: ' + data);
+				var line = data.toString();
+				//conn.emit('event.line', data.toString());
+				//console.log('STDOUT: ' + data);
+				
+				for(name in options.events) {
+					var regex = options.events[name];
+
+					if( line.match( regex ) )
+						conn.emit(name, line);
+				}
+
 			}).stderr.on('data', function(data) {
 				console.log('STDERR: ' + data);
 			});
@@ -45,5 +56,6 @@ var events = new EventEmitter();
 
 
 module.exports = {
-	connect: Connect
+	connect: Connect,
+	LINE: 'event.line'
 }
