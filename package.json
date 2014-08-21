@@ -1,10 +1,10 @@
 {
-  "name": "node-openwrt-events",
+  "name": "node-remote-events",
   "version": "0.0.1",
   "main": "src/lib/RemoteEvents.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Sitebase/node-openwrt-events.git"
+    "url": "https://github.com/Sitebase/node-remote-events.git"
   },
   "scripts": {
     "test": "grunt mochaTest"
