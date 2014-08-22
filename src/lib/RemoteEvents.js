@@ -46,6 +46,7 @@ function Connect( options )
 		host: options.host || null,
 		port: options.port || null,
 		username: options.username || null,
+		password: options.password || null,
 		privateKey: options.privateKey || null
 	});
 
